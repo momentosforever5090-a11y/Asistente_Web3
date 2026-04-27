@@ -1,11 +1,10 @@
 # requirements.txt
 # Dependencias para el proyecto de Dashboard protegido con Flask + Dash
-
-Flask==2.3.3
-Flask-Login==0.6.2
-Flask-WTF==1.1.1
-WTForms==3.0.1
-dash==2.14.0
-python-dotenv==1.0.0
-bcrypt==4.0.1          # Para hashear contraseñas (reemplazar texto plano)
-gunicorn==21.2.0       # Servidor WSGI para producción (opcional)
+flask
+dash
+gunicorn
+flask-login
+flask-wtf
+wtforms
+python-dotenv
+bcrypt
