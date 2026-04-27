@@ -1,28 +1,149 @@
-/* assets/dashboard.css */
+/* assets/dashboard.css - Estilo profesional modo oscuro */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at 10% 20%, rgba(10, 12, 18, 1) 0%, #0a0c10 100%);
+    min-height: 100vh;
+    padding: 1.5rem;
+    position: relative;
 }
 
+/* fondo con rejilla sutil */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* orbes decorativos animados */
+.orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    z-index: 0;
+    animation: float 20s infinite ease-in-out;
+}
+.orb-1 {
+    width: 350px;
+    height: 350px;
+    background: #3b82f6;
+    top: -120px;
+    left: -100px;
+}
+.orb-2 {
+    width: 450px;
+    height: 450px;
+    background: #8b5cf6;
+    bottom: -150px;
+    right: -100px;
+    animation-delay: -5s;
+}
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, 20px) scale(1.05); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+/* contenedor principal para el dashboard */
+.dashboard-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* títulos */
 h1 {
-    color: white;
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff, #a5b4fc);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
     text-align: center;
-    margin-top: 30px;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.3px;
 }
 
+/* tarjeta de saludo al usuario */
 #user-greeting {
-    background: rgba(255,255,255,0.9);
-    padding: 15px;
-    border-radius: 10px;
-    margin: 20px auto;
-    width: 80%;
+    background: rgba(30, 31, 36, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 1.5rem;
+    padding: 1rem 1.5rem;
+    margin: 0 auto 2rem auto;
+    width: fit-content;
+    max-width: 90%;
     text-align: center;
-    font-size: 18px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #e2e8f0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+}
+#user-greeting:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.4);
 }
 
-/* Borde para todos los gráficos */
+/* estilo para todos los gráficos (Dash) */
 .dash-graph {
-    border-radius: 12px;
-    border: 2px solid #0ff;
-    box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, inset 0 0 5px rgba(0,255,255,0.2);
+    background: rgba(30, 31, 36, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(59, 130, 246, 0.1) inset;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 0.5rem; /* espacio interno opcional */
+}
+.dash-graph:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(59, 130, 246, 0.3) inset;
+    border-color: rgba(59, 130, 246, 0.4);
+}
+
+/* para cualquier tarjeta adicional (opcional) */
+.card-dashboard {
+    background: rgba(30, 31, 36, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 1.25rem;
+    transition: all 0.2s;
+}
+.card-dashboard:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 15px 30px -10px rgba(0,0,0,0.3);
+}
+
+/* responsivo */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    h1 {
+        font-size: 1.6rem;
+    }
+    #user-greeting {
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+    }
 }
