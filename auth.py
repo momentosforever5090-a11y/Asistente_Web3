@@ -1,4 +1,4 @@
-Mira esto: # auth.py
+# auth.py
 from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from forms import LoginForm
