@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- CSS personalizado (sin conexión) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>🔐 Acceso al Dashboard</h3>
+                        <p>Ingresa tus credenciales</p>
+                    </div>
+                    <div class="card-body">
+                        <!-- Mensajes flash -->
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">×</button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        
+                        <!-- Formulario WTForms -->
+                        <form method="post" novalidate>
+                            {{ form.hidden_tag() }}
+                            
+                            <div class="form-group">
+                                {{ form.username.label(class="form-label") }}
+                                {{ form.username(class="form-control" + (" is-invalid" if form.username.errors else ""), placeholder="Ej: admin") }}
+                                {% for error in form.username.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="form-group">
+                                {{ form.password.label(class="form-label") }}
+                                {{ form.password(class="form-control" + (" is-invalid" if form.password.errors else ""), placeholder="Contraseña") }}
+                                {% for error in form.password.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            
+                            <div class="form-check">
+                                {{ form.remember(class="form-check-input") }}
+                                {{ form.remember.label(class="form-check-label") }}
+                            </div>
+                            
+                            <div class="d-grid">
+                                {{ form.submit(class="btn btn-primary") }}
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            Usuarios de prueba: <strong>admin</strong> / admin123  |  <strong>user</strong> / pass
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mini script para cerrar alertas (opcional) -->
+    <script>
+        // Cerrar alerta manualmente
+        document.querySelectorAll('.btn-close').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.closest('.alert').style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
